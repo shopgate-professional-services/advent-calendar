@@ -1,0 +1,58 @@
+{
+  "version": "1.0.0",
+  "id": "@shopgate-project/advent-calendar",
+  "components": [
+    {
+      "id": "AdventCalendar",
+      "path": "frontend/pages/AdventCalendar",
+      "target": "app.routes",
+      "type": "portals"
+    },
+    {
+      "id": "Subscribers",
+      "path": "frontend/subscriptions.js",
+      "type": "subscribers"
+    }
+  ],
+  "configuration": {
+    "calendar": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": [],
+      "params": {
+        "type": "json",
+        "label": "Calendar config by days"
+      }
+    },
+    "calendarPage": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": {
+        "image": "https://shopgate-public.s3.eu-west-1.amazonaws.com/ps/advent/v1/page.png"
+      },
+      "params": {
+        "type": "json",
+        "label": "Calendar page config"
+      }
+    },
+    "calendarGrid": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": {
+        "bgImage": null,
+        "randomizeNumbers": true,
+        "messages": {
+          "future": "Too early, come later"
+        },
+        "styles": {
+          "expired": null,
+          "active": null
+        }
+      },
+      "params": {
+        "type": "json",
+        "label": "Calendar grid config"
+      }
+    }
+  }
+}
