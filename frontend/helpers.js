@@ -3,15 +3,11 @@ import { calendarGrid } from './config';
 
 const { randomizeNumbers } = calendarGrid;
 
-let getNowDate;
-if (process.env.NODE_ENV === 'development') {
-  getNowDate = () => new Date((window.Engage.date || new Date()).getTime());
-} else {
-  getNowDate = () => new Date();
-}
+const getNowDate = () => new Date((
+  window.Engage && window.Engage.date ? window.Engage.date : new Date()
+).getTime());
 
 let days;
-
 /**
  * @returns {Array}
  */
