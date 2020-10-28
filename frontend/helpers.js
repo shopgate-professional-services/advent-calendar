@@ -1,5 +1,5 @@
 import shuffle from 'lodash/shuffle';
-import { calendarGrid } from './config';
+import { calendarGrid, calendar } from './config';
 
 const { randomizeNumbers } = calendarGrid;
 
@@ -86,3 +86,13 @@ export const getCountDownSeconds = () => {
 
   return (start.getTime() - diff) / 1000;
 };
+
+/**
+ * @param {number} day .
+ * @return {Object}
+ */
+export const getCalendarDay = day => (
+  calendar.find(d => (
+    parseInt(d.day, 10) === parseInt(day, 10)
+  )) || null
+);

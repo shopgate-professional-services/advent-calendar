@@ -1,17 +1,17 @@
 import React, {
   Fragment, useCallback, useEffect, useState,
 } from 'react';
-import { UIEvents, ToastProvider } from '@shopgate/engage/core';
+import { ToastProvider, UIEvents } from '@shopgate/engage/core';
 import { Grid } from '@shopgate/engage/components';
 import ActiveDayCell from './components/ActiveDayCell';
 import ExpiredDayCell from './components/ExpiredDayCell';
 import FutureDayCell from './components/FutureDayCell';
 import RewardSheet from '../RewardSheet';
-import { getCalendarDays, isDayExpired, isFutureDay } from '../../helpers';
-import { calendar, calendarGrid } from '../../config';
+import {
+  getCalendarDay, getCalendarDays, isDayExpired, isFutureDay,
+} from '../../helpers';
+import { messages } from '../../config';
 import { styles } from './styles';
-
-const { messages } = calendarGrid;
 
 /**
  * @returns {JSX}
@@ -24,9 +24,14 @@ const Calendar = () => {
     if (isFutureDay(day)) {
       UIEvents.emit(ToastProvider.ADD, {
         id: 'advent.calendar',
-        message: messages.future || 'modal.body_error',
+        message: messages.dayInFuture || 'modal.body_error',
       });
-    } else if (!isDayExpired(day)) {
+    } else if (!getCalendarDay(day)) {
+      UIEvents.emit(ToastProvider.ADD, {
+        id: 'advent.calendar',
+        message: messages.dayNotFound || 'modal.body_error',
+      });
+    } else {
       setActiveDay(day);
     }
   }, []);
@@ -49,7 +54,7 @@ const Calendar = () => {
     }
   }, [showSheet]);
 
-  const content = calendar[activeDay - 1] ? calendar[activeDay - 1] : null;
+  const content = getCalendarDay(activeDay);
 
   return (
     <Fragment>

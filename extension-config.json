@@ -28,7 +28,8 @@
       "type": "admin",
       "destination": "frontend",
       "default": {
-        "image": "https://shopgate-public.s3.eu-west-1.amazonaws.com/ps/advent/v1/page.png"
+        "image": "https://shopgate-public.s3.eu-west-1.amazonaws.com/ps/advent/v1/page.png",
+        "fallingSnow": true
       },
       "params": {
         "type": "json",
@@ -41,9 +42,6 @@
       "default": {
         "bgImage": null,
         "randomizeNumbers": true,
-        "messages": {
-          "future": "Too early, come later"
-        },
         "styles": {
           "expired": null,
           "active": null
@@ -52,6 +50,18 @@
       "params": {
         "type": "json",
         "label": "Calendar grid config"
+      }
+    },
+    "messages": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": {
+        "dayInFuture": "Too early, come later",
+        "dayNotFound": "Sorry, no reward this day"
+      },
+      "params": {
+        "type": "json",
+        "label": "Messages config"
       }
     }
   }

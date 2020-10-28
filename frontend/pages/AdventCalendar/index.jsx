@@ -9,7 +9,7 @@ import ComingSoon from '../../components/ComingSoon';
 import { isCalendarAllowed } from '../../helpers';
 import { calendarPage } from '../../config';
 
-const { image } = calendarPage;
+const { image, fallingSnow } = calendarPage;
 
 const styles = {
   content: css({
@@ -34,7 +34,8 @@ const AdventCalendar = () => {
     <View>
       <div className={styles.content}>
         <CloseButton />
-        <Snowfall />
+
+        {fallingSnow && <Snowfall />}
 
         <div className={styles.image}>
           <img src={image} alt="" />

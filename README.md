@@ -9,6 +9,7 @@ You can also see a demo of advent calendar:
 ## Configuration
 
 - `calendar` (json): the calendar config. Should contain 24 entries (for each dat from 1 Dec to 24 Dec). Each entry consists of
+    - `day` (number): day number in range of 1-24
     - `image` (string): image url to show for this entry
     - `title` (string): title of this entry
     - `content` (string): content to show for this entry (can be html)
@@ -29,6 +30,7 @@ You can also see a demo of advent calendar:
 {
   "calendar": [
     {
+      "day": 1,
       "image": "https://picsum.photos/90",
       "title": "Ho Ho Ho!",
       "subTitle": "Hinter Türchen # verbirgt sich:",
