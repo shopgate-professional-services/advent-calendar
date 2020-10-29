@@ -28,8 +28,7 @@
       "type": "admin",
       "destination": "frontend",
       "default": {
-        "image": "https://shopgate-public.s3.eu-west-1.amazonaws.com/ps/advent/v1/page.png",
-        "fallingSnow": true
+        "image": "https://shopgate-public.s3.eu-west-1.amazonaws.com/ps/advent/v1/page.png"
       },
       "params": {
         "type": "json",
@@ -42,6 +41,7 @@
       "default": {
         "bgImage": null,
         "randomizeNumbers": true,
+        "fallingSnow": true,
         "styles": {
           "expired": null,
           "active": null
@@ -56,7 +56,8 @@
       "type": "admin",
       "destination": "frontend",
       "default": {
-        "dayInFuture": "Too early, come later",
+        "calendarTooEarly": "Too early, calendar not yet active. Come back later",
+        "dayInFuture": "Too early for this day, come later",
         "dayNotFound": "Sorry, no reward this day"
       },
       "params": {

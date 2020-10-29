@@ -7,11 +7,14 @@ import ActiveDayCell from './components/ActiveDayCell';
 import ExpiredDayCell from './components/ExpiredDayCell';
 import FutureDayCell from './components/FutureDayCell';
 import RewardSheet from '../RewardSheet';
+import Snowfall from '../Snowfall';
 import {
   getCalendarDay, getCalendarDays, isDayExpired, isFutureDay,
 } from '../../helpers';
-import { messages } from '../../config';
+import { messages, calendarGrid } from '../../config';
 import { styles } from './styles';
+
+const { fallingSnow } = calendarGrid;
 
 /**
  * @returns {JSX}
@@ -58,33 +61,37 @@ const Calendar = () => {
 
   return (
     <Fragment>
-      <Grid className={styles.grid}>
-        {getCalendarDays().map((day) => {
-          if (isDayExpired(day)) {
-            return (
-              <ExpiredDayCell key={day} day={day} />
-            );
-          }
+      <div className={styles.gridWrapper}>
+        {fallingSnow && <Snowfall />}
 
-          if (isFutureDay(day)) {
+        <Grid className={styles.grid}>
+          {getCalendarDays().map((day) => {
+            if (isDayExpired(day)) {
+              return (
+                <ExpiredDayCell key={day} day={day} />
+              );
+            }
+
+            if (isFutureDay(day)) {
+              return (
+                <FutureDayCell
+                  key={day}
+                  day={day}
+                  onActivateDay={activateDay}
+                />
+              );
+            }
+
             return (
-              <FutureDayCell
+              <ActiveDayCell
                 key={day}
                 day={day}
                 onActivateDay={activateDay}
               />
             );
-          }
-
-          return (
-            <ActiveDayCell
-              key={day}
-              day={day}
-              onActivateDay={activateDay}
-            />
-          );
-        })}
-      </Grid>
+          })}
+        </Grid>
+      </div>
 
       <RewardSheet
         isOpen={showSheet}

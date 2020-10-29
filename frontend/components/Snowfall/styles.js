@@ -4,8 +4,6 @@ export const canvas = css({
   position: 'absolute',
   pointerEvents: 'none',
   zIndex: 2,
-  display: 'flex',
-  flexWrap: 'wrap',
   overflow: 'hidden',
   top: 0,
   left: 0,
@@ -16,16 +14,21 @@ export const canvas = css({
 const fallFrames = css.keyframes({
   '0%': { opacity: 0 },
   '3%': { opacity: 0.9 },
-  '90%': { opacity: 0.9 },
-  '100%': {
-    transform: 'translate(0, 97vh)',
+  '50%': { opacity: 0.9 },
+  '60%': { opacity: 0.5 },
+  '80%': {
     opacity: 0,
+    transform: 'translate(0, 97vh)',
   },
 });
 
 export const snowFlake = css({
+  position: 'absolute',
+  top: 0,
+  left: 0,
   color: '#fff',
-  opacity: '0',
+  opacity: 0,
+  height: 40,
   width: 40,
   animation: `${fallFrames} 16s linear infinite`,
 }).toString();

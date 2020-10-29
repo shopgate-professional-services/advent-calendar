@@ -6,6 +6,14 @@ You can also see a demo of advent calendar:
 - [calendar page](./demo/page.png)
 - [reward sheet](./demo/reward.png)
 
+## Extension pages
+
+Pages can be referenced from widgets or used with deep links.  
+This extension uses such pages:
+
+
+- `/advent-calendar` a page where calendar is placed.
+
 ## Configuration
 
 - `calendar` (json): the calendar config. Should contain 24 entries (for each dat from 1 Dec to 24 Dec). Each entry consists of

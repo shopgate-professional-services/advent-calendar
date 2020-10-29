@@ -4,6 +4,9 @@ import { calendarGrid } from '../../config';
 const { bgImage, styles: configStyles } = calendarGrid;
 
 export const styles = {
+  gridWrapper: css({
+    position: 'relative',
+  }).toString(),
   grid: css({
     width: '100%',
     borderRadius: '20px',
