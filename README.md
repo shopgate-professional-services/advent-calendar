@@ -1,6 +1,6 @@
 # Shopgate Connect - Advent Calendar extension
 
-This extension provides advent calendar page to show daily configured entries. 
+This extension provides advent calendar page to show daily configured entries.
 
 You can also see a demo of advent calendar:
 - [calendar page](./demo/page.png)
@@ -16,7 +16,7 @@ This extension uses such pages:
 
 ## Configuration
 
-- `calendar` (json): the calendar config. Should contain 24 entries (for each dat from 1 Dec to 24 Dec). Each entry consists of
+- `calendar` (json): the calendar config. Should contain 24 entries (for each day from 1 Dec to 24 Dec). Each entry consists of
     - `day` (number): day number in range of 1-24
     - `image` (string): image url to show for this entry
     - `title` (string): title of this entry

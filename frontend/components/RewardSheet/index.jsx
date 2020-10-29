@@ -53,7 +53,7 @@ const RewardSheet = ({ isOpen, content, onClose }) => (
       {content && (
         <Fragment>
           <div>
-            <img src="https://shopgate-public.s3.eu-west-1.amazonaws.com/ps/advent/v1/bell.png" alt=""/>
+            <img src="https://shopgate-public.s3.eu-west-1.amazonaws.com/ps/advent/v1/bell.png" alt="" />
           </div>
           <div className={styles.title}>
             {content.title}
