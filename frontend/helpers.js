@@ -91,7 +91,7 @@ export const getCountDownSeconds = () => {
  * @param {number} day .
  * @return {Object}
  */
-export const getCalendarDay = day => (
+export const getCalendarDayConfig = day => (
   calendar.find(d => (
     parseInt(d.day, 10) === parseInt(day, 10)
   )) || null

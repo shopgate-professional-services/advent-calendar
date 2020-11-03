@@ -9,7 +9,7 @@ import FutureDayCell from './components/FutureDayCell';
 import RewardSheet from '../RewardSheet';
 import Snowfall from '../Snowfall';
 import {
-  getCalendarDay, getCalendarDays, isDayExpired, isFutureDay,
+  getCalendarDayConfig, getCalendarDays, isDayExpired, isFutureDay,
 } from '../../helpers';
 import { messages, calendarGrid } from '../../config';
 import { styles } from './styles';
@@ -29,7 +29,7 @@ const Calendar = () => {
         id: 'advent.calendar',
         message: messages.dayInFuture || 'modal.body_error',
       });
-    } else if (!getCalendarDay(day)) {
+    } else if (!getCalendarDayConfig(day)) {
       UIEvents.emit(ToastProvider.ADD, {
         id: 'advent.calendar',
         message: messages.dayNotFound || 'modal.body_error',
@@ -57,14 +57,14 @@ const Calendar = () => {
     }
   }, [showSheet]);
 
-  const content = getCalendarDay(activeDay);
+  const dayConfig = getCalendarDayConfig(activeDay);
 
   return (
     <Fragment>
       <div className={styles.gridWrapper}>
         {fallingSnow && <Snowfall />}
 
-        <Grid className={styles.grid}>
+        <Grid className={styles.grid.toString()} wrap>
           {getCalendarDays().map((day) => {
             if (isDayExpired(day)) {
               return (
@@ -95,7 +95,7 @@ const Calendar = () => {
 
       <RewardSheet
         isOpen={showSheet}
-        content={content}
+        content={dayConfig}
         onClose={() => setShowSheet(false)}
       />
 

@@ -1,20 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { css } from 'glamor';
 import { Grid } from '@shopgate/engage/components';
 import { styles } from '../../styles';
+import { getCalendarDayConfig } from '../../../../helpers';
 
 /**
  * @returns {JSX}
  */
-const FutureDayCell = ({ day, onActivateDay }) => (
-  <Grid.Item
-    shrink={0}
-    className={`${styles.gridItem} ${styles.gridItemActive}`}
-    onClick={() => onActivateDay(day)}
-  >
-    <span>{day}</span>
-  </Grid.Item>
-);
+const FutureDayCell = ({ day, onActivateDay }) => {
+  const {
+    gridLabel: {
+      front = day,
+    } = {},
+    gridStyles: {
+      future: {
+        front: frontStyle,
+      } = {},
+    } = {},
+  } = getCalendarDayConfig(day) || {};
+
+  return (
+    <Grid.Item
+      shrink={0}
+      className={css(
+        styles.gridItem,
+        styles.gridItemFuture,
+        frontStyle
+      ).toString()}
+      onClick={() => onActivateDay(day)}
+    >
+      <span>{front}</span>
+    </Grid.Item>
+  );
+};
 
 FutureDayCell.propTypes = {
   day: PropTypes.node.isRequired,

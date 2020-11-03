@@ -1,4 +1,4 @@
-import React, { useState, useCallback, Fragment } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'glamor';
 import { useSpring, animated as a } from 'react-spring';
@@ -24,7 +24,7 @@ export const styles = {
  * @returns {JSX}
  */
 const FlippingCard = ({
-  front, back, onFlip, className,
+  front, back, onFlip, className, frontStyle, backStyle,
 }) => {
   const [flipped, setFlipped] = useState(false);
 
@@ -51,6 +51,7 @@ const FlippingCard = ({
       <a.div
         className={`${styles.card} ${className}`}
         style={{
+          ...frontStyle,
           opacity: opacity.interpolate(o => 1 - o),
           transform,
         }}
@@ -60,6 +61,7 @@ const FlippingCard = ({
       <a.div
         className={`${styles.card} ${className}`}
         style={{
+          ...backStyle,
           opacity,
           transform: transform.interpolate(t => `${t} rotateY(180deg)`),
         }}
@@ -74,11 +76,15 @@ FlippingCard.propTypes = {
   back: PropTypes.node.isRequired,
   front: PropTypes.node.isRequired,
   onFlip: PropTypes.func.isRequired,
+  backStyle: PropTypes.shape(),
   className: PropTypes.string,
+  frontStyle: PropTypes.shape(),
 };
 
 FlippingCard.defaultProps = {
+  backStyle: null,
   className: '',
+  frontStyle: null,
 };
 
 export default FlippingCard;

@@ -1,7 +1,7 @@
 import { css } from 'glamor';
 import { calendarGrid } from '../../config';
 
-const { bgImage, styles: configStyles } = calendarGrid;
+const { styles: configStyles } = calendarGrid;
 
 export const styles = {
   gridWrapper: css({
@@ -10,7 +10,6 @@ export const styles = {
   grid: css({
     width: '100%',
     borderRadius: '20px',
-    flexWrap: 'wrap',
     ' > *:nth-child(1)': {
       borderRadius: '20px 0 0px 0px',
     },
@@ -23,11 +22,7 @@ export const styles = {
     ' > *:nth-child(24)': {
       borderRadius: '0px 0 20px 0px',
     },
-  }, bgImage && {
-    backgroundImage: `url(${bgImage})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'contain',
-  }).toString(),
+  }, configStyles.grid),
   gridItem: css({
     width: 'calc(25% - 2px)',
     height: 90,
@@ -39,13 +34,16 @@ export const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
-  }).toString(),
+  }, configStyles.gridItem),
   gridItemActive: css({
     background: '#A70F09',
-  }, configStyles.active).toString(),
+  }, configStyles.active),
+  gridItemFuture: css({
+    background: '#A70F09',
+  }, configStyles.future),
   gridItemExpired: css({
     background: '#2c2c2c',
-  }, configStyles.expired).toString(),
+  }, configStyles.expired),
   flippingSide: css({
     position: 'absolute',
     maxWidth: '90px',

@@ -23,14 +23,21 @@ This extension uses such pages:
     - `content` (string): content to show for this entry (can be html)
     - `buttonText` (string): button text
     - `buttonLink` (string): button link
+    - `styles` (json): style for calendar grid item for this day (background, etc)
+        - `expired` (json): for expired day
+        - `future` (json): for future day
+        - `active` (json): for active day
 - `calendarPage` (json): Memoization options of shown disclaimer (fifo based)
     - `image` (string): image url to show on top of page
 - `calendarGrid` (json): Styles for content and buttons (glamor)
-    - `bgImage` (json): styles of header
-    - `randomizeNumbers` (json): styles of content
-    - `styles` (json): style for buttons wrapper
-        - `expired` (json): styles of header
-        - `active` (json): styles of content
+    - `randomizeNumbers` (boolean): randomize calendar grid items
+    - `fallingSnow` (boolean): show snow fall animation
+    - `styles` (json): style for grid items
+        - `grid` (json): for expired days
+        - `gridItem` (json): for expired days
+        - `expired` (json): for expired days
+        - `future` (json): for expired days
+        - `active` (json): for active days
 
 ## Example Configuration
 
@@ -44,17 +51,47 @@ This extension uses such pages:
       "subTitle": "Hinter Türchen # verbirgt sich:",
       "content": "Unsere Schokoladenspezialitäten für den ersten Dezember. Wir wünschen euch einen guten Start in die Weihnachtszeit",
       "buttonText": "LINK",
-      "buttonLink": "/category"
+      "buttonLink": "/category",
+      "gridLabel": {
+        "front": null,
+        "back": "😊"
+      },
+      "gridStyles": {
+        "expired": {
+          "front": null
+        },
+        "future": {
+          "front": null
+        },
+        "active": {
+          "front": {
+            "backgroundImage": "url(https://picsum.photos/90)",
+            "backgroundRepeat": "no-repeat",
+            "backgroundSize": "cover"
+          },
+          "back": null
+        }
+      }
     }
   ],
   "calendarPage": {
     "image": "https://picsum.photos/120"
   },
   "calendarGrid": {
-    "bgImage": "https://picsum.photos/400/700",
     "randomizeNumbers": true,
+    "fallingSnow": true,
     "styles": {
+      "grid": {
+        "backgroundImage": "url(https://picsum.photos/400/800)",
+        "backgroundRepeat": "no-repeat",
+        "backgroundSize": "contain"
+      },
+      "gridItem": null,
       "expired": {
+        "background": "#f4f4f4",
+        "color": "#f4f4f4"
+      },
+      "future": {
         "background": "#f4f4f4",
         "color": "#f4f4f4"
       },

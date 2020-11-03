@@ -39,11 +39,13 @@
       "type": "admin",
       "destination": "frontend",
       "default": {
-        "bgImage": null,
         "randomizeNumbers": true,
         "fallingSnow": true,
         "styles": {
+          "grid": null,
+          "gridItem": null,
           "expired": null,
+          "future": null,
           "active": null
         }
       },
