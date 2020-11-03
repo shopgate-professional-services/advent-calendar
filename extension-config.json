@@ -1,0 +1,71 @@
+{
+  "version": "1.0.0-beta.2",
+  "id": "@shopgate-project/advent-calendar",
+  "components": [
+    {
+      "id": "AdventCalendar",
+      "path": "frontend/pages/AdventCalendar",
+      "target": "app.routes",
+      "type": "portals"
+    },
+    {
+      "id": "Subscribers",
+      "path": "frontend/subscriptions.js",
+      "type": "subscribers"
+    }
+  ],
+  "configuration": {
+    "calendar": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": [],
+      "params": {
+        "type": "json",
+        "label": "Calendar config by days"
+      }
+    },
+    "calendarPage": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": {
+        "image": "https://shopgate-public.s3.eu-west-1.amazonaws.com/ps/advent/v1/page.png"
+      },
+      "params": {
+        "type": "json",
+        "label": "Calendar page config"
+      }
+    },
+    "calendarGrid": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": {
+        "randomizeNumbers": true,
+        "fallingSnow": true,
+        "styles": {
+          "grid": null,
+          "gridItem": null,
+          "expired": null,
+          "future": null,
+          "active": null
+        }
+      },
+      "params": {
+        "type": "json",
+        "label": "Calendar grid config"
+      }
+    },
+    "messages": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": {
+        "calendarTooEarly": "Too early, calendar not yet active. Come back later",
+        "dayInFuture": "Too early for this day, come later",
+        "dayNotFound": "Sorry, no reward this day"
+      },
+      "params": {
+        "type": "json",
+        "label": "Messages config"
+      }
+    }
+  }
+}
