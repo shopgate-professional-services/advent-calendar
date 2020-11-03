@@ -10,9 +10,7 @@ import { getCalendarDayConfig } from '../../../../helpers';
  */
 const FutureDayCell = ({ day, onActivateDay }) => {
   const {
-    gridLabel: {
-      front = day,
-    } = {},
+    gridLabel: { front } = {},
     gridStyles: {
       future: {
         front: frontStyle,
@@ -30,7 +28,7 @@ const FutureDayCell = ({ day, onActivateDay }) => {
       ).toString()}
       onClick={() => onActivateDay(day)}
     >
-      <span>{front}</span>
+      <span>{front || day}</span>
     </Grid.Item>
   );
 };

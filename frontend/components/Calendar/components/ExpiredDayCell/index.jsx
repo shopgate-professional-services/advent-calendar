@@ -10,9 +10,7 @@ import { getCalendarDayConfig } from '../../../../helpers';
  */
 const ExpiredDayCell = ({ day }) => {
   const {
-    gridLabel: {
-      front = day,
-    } = {},
+    gridLabel: { front } = {},
     gridStyles: {
       expired: {
         front: frontStyle,
@@ -29,7 +27,7 @@ const ExpiredDayCell = ({ day }) => {
         frontStyle
       ).toString()}
     >
-      <span>{front}</span>
+      <span>{front || day}</span>
     </Grid.Item>
   );
 };

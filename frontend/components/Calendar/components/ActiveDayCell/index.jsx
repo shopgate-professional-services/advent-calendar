@@ -11,8 +11,8 @@ import { getCalendarDayConfig } from '../../../../helpers';
 const ActiveDayCell = ({ day, onActivateDay }) => {
   const {
     gridLabel: {
-      front = day,
-      back = '😊',
+      front,
+      back,
     } = {},
     gridStyles: {
       active: {
@@ -25,8 +25,8 @@ const ActiveDayCell = ({ day, onActivateDay }) => {
   return (
     <Grid.Item shrink={0} className={styles.gridItem.toString()}>
       <FlippingCard
-        front={<span>{front}</span>}
-        back={<span>{back}</span>}
+        front={<span>{front || day}</span>}
+        back={<span>{back || '😊'}</span>}
         onFlip={() => onActivateDay(day)}
         className={styles.gridItemActive.toString()}
         frontStyle={frontStyle}
