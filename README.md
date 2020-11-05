@@ -32,6 +32,7 @@ This extension uses such pages:
 - `calendarGrid` (json): Styles for content and buttons (glamor)
     - `randomizeNumbers` (boolean): randomize calendar grid items
     - `fallingSnow` (boolean): show snow fall animation
+    - `sheetDelay` (number): delay of showing the reward sheet (in ms)
     - `styles` (json): style for grid items
         - `grid` (json): for expired days
         - `gridItem` (json): for expired days
@@ -80,6 +81,7 @@ This extension uses such pages:
   "calendarGrid": {
     "randomizeNumbers": true,
     "fallingSnow": true,
+    "sheetDelay": 1500,
     "styles": {
       "grid": {
         "backgroundImage": "url(https://picsum.photos/400/800)",
