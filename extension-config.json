@@ -41,6 +41,7 @@
       "default": {
         "randomizeNumbers": true,
         "fallingSnow": true,
+        "sheetDelay": 1500,
         "styles": {
           "grid": null,
           "gridItem": null,

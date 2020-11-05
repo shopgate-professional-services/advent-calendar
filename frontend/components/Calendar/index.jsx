@@ -14,7 +14,7 @@ import {
 import { messages, calendarGrid } from '../../config';
 import { styles } from './styles';
 
-const { fallingSnow } = calendarGrid;
+const { fallingSnow, sheetDelay = 1500 } = calendarGrid;
 
 /**
  * @returns {JSX}
@@ -42,7 +42,7 @@ const Calendar = () => {
   useEffect(() => {
     let t;
     if (activeDay) {
-      t = setTimeout(() => setShowSheet(true), 500);
+      t = setTimeout(() => setShowSheet(true), sheetDelay);
     }
     return () => {
       if (t) {
