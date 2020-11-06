@@ -64,7 +64,7 @@ const Calendar = () => {
       <div className={styles.gridWrapper}>
         {fallingSnow && <Snowfall />}
 
-        <Grid className={styles.grid.toString()} wrap>
+        <Grid className={styles.grid.toString()}>
           {getCalendarDays().map((day) => {
             if (isDayExpired(day)) {
               return (

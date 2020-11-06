@@ -8,6 +8,9 @@ export const styles = {
     position: 'relative',
   }).toString(),
   grid: css({
+    display: 'grid',
+    gridGap: '6px',
+    gridTemplateColumns: 'repeat(4, 1fr)',
     width: '100%',
     borderRadius: '20px',
     ' > *:nth-child(1)': {
@@ -24,8 +27,7 @@ export const styles = {
     },
   }, configStyles.grid),
   gridItem: css({
-    width: 'calc(25% - 2px)',
-    height: 90,
+    height: 80,
     border: '1px solid #D3D3D3',
     fontWeight: 500,
     fontSize: '1.5rem',
@@ -34,15 +36,17 @@ export const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '100% 100%',
   }, configStyles.gridItem),
   gridItemActive: css({
-    background: '#A70F09',
+    backgroundColor: '#A70F09',
   }, configStyles.active),
   gridItemFuture: css({
-    background: '#A70F09',
+    backgroundColor: '#A70F09',
   }, configStyles.future),
   gridItemExpired: css({
-    background: '#2c2c2c',
+    backgroundColor: '#2c2c2c',
   }, configStyles.expired),
   flippingSide: css({
     position: 'absolute',

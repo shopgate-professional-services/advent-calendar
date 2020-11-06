@@ -10,11 +10,9 @@ import { getCalendarDayConfig } from '../../../../helpers';
  */
 const ExpiredDayCell = ({ day }) => {
   const {
-    gridLabel: { front } = {},
-    gridStyles: {
-      expired: {
-        front: frontStyle,
-      } = {},
+    grid: {
+      frontLabel,
+      frontImage,
     } = {},
   } = getCalendarDayConfig(day) || {};
 
@@ -24,10 +22,17 @@ const ExpiredDayCell = ({ day }) => {
       className={css(
         styles.gridItem,
         styles.gridItemExpired,
-        frontStyle
+        frontImage && {
+          backgroundImage: `url(${frontImage})`,
+        }
       ).toString()}
     >
-      <span>{front || day}</span>
+      <span>
+        {frontImage
+          ? ''
+          : frontLabel || day
+        }
+      </span>
     </Grid.Item>
   );
 };
