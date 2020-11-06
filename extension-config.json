@@ -28,7 +28,8 @@
       "type": "admin",
       "destination": "frontend",
       "default": {
-        "image": "https://shopgate-public.s3.eu-west-1.amazonaws.com/ps/advent/v1/page.png"
+        "image": "https://shopgate-public.s3.eu-west-1.amazonaws.com/ps/advent/v1/page.png",
+        "styles": null
       },
       "params": {
         "type": "json",

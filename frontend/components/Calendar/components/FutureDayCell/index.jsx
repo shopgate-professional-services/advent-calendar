@@ -10,11 +10,9 @@ import { getCalendarDayConfig } from '../../../../helpers';
  */
 const FutureDayCell = ({ day, onActivateDay }) => {
   const {
-    gridLabel: { front } = {},
-    gridStyles: {
-      future: {
-        front: frontStyle,
-      } = {},
+    grid: {
+      frontLabel,
+      frontImage,
     } = {},
   } = getCalendarDayConfig(day) || {};
 
@@ -24,11 +22,18 @@ const FutureDayCell = ({ day, onActivateDay }) => {
       className={css(
         styles.gridItem,
         styles.gridItemFuture,
-        frontStyle
+        frontImage && {
+          backgroundImage: `url(${frontImage})`,
+        }
       ).toString()}
       onClick={() => onActivateDay(day)}
     >
-      <span>{front || day}</span>
+      <span>
+        {frontImage
+          ? ''
+          : frontLabel || day
+        }
+      </span>
     </Grid.Item>
   );
 };

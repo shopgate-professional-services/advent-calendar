@@ -17,6 +17,8 @@ export const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 'inherit',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '100% 100%',
   }),
 };
 

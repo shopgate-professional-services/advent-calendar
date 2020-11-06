@@ -23,22 +23,24 @@ This extension uses such pages:
     - `content` (string): content to show for this entry (can be html)
     - `buttonText` (string): button text
     - `buttonLink` (string): button link
-    - `styles` (json): style for calendar grid item for this day (background, etc)
-        - `expired` (json): for expired day
-        - `future` (json): for future day
-        - `active` (json): for active day
+    - `grid` (json): grid item labels / images for this day
+        - `frontLabel` (string): front label
+        - `frontImage` (string): front image
+        - `backLabel` (string): back label
+        - `backImage` (string): back image
 - `calendarPage` (json): Memoization options of shown disclaimer (fifo based)
     - `image` (string): image url to show on top of page
+    - `styles` (json): styles for calendar page
 - `calendarGrid` (json): Styles for content and buttons (glamor)
     - `randomizeNumbers` (boolean): randomize calendar grid items
     - `fallingSnow` (boolean): show snow fall animation
     - `sheetDelay` (number): delay of showing the reward sheet (in ms)
-    - `styles` (json): style for grid items
-        - `grid` (json): for expired days
-        - `gridItem` (json): for expired days
-        - `expired` (json): for expired days
-        - `future` (json): for expired days
-        - `active` (json): for active days
+    - `styles` (json): style for grid
+        - `grid` (json): styles for grid
+        - `gridItem` (json): styles for grid item
+        - `expired` (json): styles for active day grid item
+        - `future` (json): styles for future day grid item
+        - `active` (json): styles for active day grid item
 
 ## Example Configuration
 
@@ -47,31 +49,17 @@ This extension uses such pages:
   "calendar": [
     {
       "day": 1,
-      "image": "https://picsum.photos/90",
+      "image": "https://picsum.photos/600/200",
       "title": "Ho Ho Ho!",
-      "subTitle": "Hinter Türchen # verbirgt sich:",
       "content": "Unsere Schokoladenspezialitäten für den ersten Dezember. Wir wünschen euch einen guten Start in die Weihnachtszeit",
-      "buttonText": "LINK",
+      "subTitle": "Hinter Türchen # verbirgt sich:",
       "buttonLink": "/category",
-      "gridLabel": {
-        "front": null,
-        "back": "😊"
-      },
-      "gridStyles": {
-        "expired": {
-          "front": null
-        },
-        "future": {
-          "front": null
-        },
-        "active": {
-          "front": {
-            "backgroundImage": "url(https://picsum.photos/90)",
-            "backgroundRepeat": "no-repeat",
-            "backgroundSize": "cover"
-          },
-          "back": null
-        }
+      "buttonText": "LINK",
+      "grid": {
+        "frontLabel": null,
+        "backLabel": "☺",
+        "frontImage": "https://picsum.photos/80",
+        "backImage": null
       }
     }
   ],
