@@ -60,7 +60,7 @@ const RewardSheet = ({ isOpen, content, onClose }) => (
           </div>
           {content.subTitle && (
             <div className={styles.subTitle}>
-              {content.title}
+              {content.subTitle}
             </div>
           )}
           <div>
