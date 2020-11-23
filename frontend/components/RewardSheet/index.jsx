@@ -2,6 +2,9 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'glamor';
 import { SheetDrawer, HtmlSanitizer, Link } from '@shopgate/engage/components';
+import { rewardSheet } from '../../config';
+
+const { styles: rewardSheetStyles, headerImage } = rewardSheet;
 
 const styles = {
   sheet: css({
@@ -16,27 +19,27 @@ const styles = {
     ' > *': {
       margin: '0.5rem',
     },
-  }).toString(),
+  }, rewardSheetStyles.content).toString(),
   title: css({
     color: '#111111',
     fontSize: '2rem',
     fontWeight: 600,
-  }),
+  }, rewardSheetStyles.title),
   subTitle: css({
     color: '#111111',
     fontSize: '1.25rem',
-  }),
+  }, rewardSheetStyles.subTitle),
   text: css({
     textAlign: 'center',
     fontSize: '0.875rem',
-  }).toString(),
+  }, rewardSheetStyles.text).toString(),
   link: css({
     display: 'flex',
     justifyContent: 'center',
     color: '#C62121',
     textTransform: 'uppercase',
     fontWeight: 600,
-  }).toString(),
+  }, rewardSheetStyles.link).toString(),
 };
 
 /**
@@ -52,9 +55,11 @@ const RewardSheet = ({ isOpen, content, onClose }) => (
     <div className={styles.content}>
       {content && (
         <Fragment>
-          <div>
-            <img src="https://shopgate-public.s3.eu-west-1.amazonaws.com/ps/advent/v1/bell.png" alt="" />
-          </div>
+          {headerImage && (
+            <div>
+              <img src={headerImage} alt="" />
+            </div>
+          )}
           <div className={styles.title}>
             {content.title}
           </div>
@@ -78,13 +83,13 @@ const RewardSheet = ({ isOpen, content, onClose }) => (
   </SheetDrawer>
 );
 
-RewardSheet.propTypes = {
+rewardSheetStyles.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   content: PropTypes.shape(),
 };
 
-RewardSheet.defaultProps = {
+rewardSheetStyles.defaultProps = {
   content: null,
 };
 
