@@ -68,9 +68,11 @@ const RewardSheet = ({ isOpen, content, onClose }) => (
               {content.subTitle}
             </div>
           )}
-          <div>
-            <img src={content.image} alt="" />
-          </div>
+          {content.image && (
+            <div>
+              <img src={content.image} alt="" />
+            </div>
+          )}
           <HtmlSanitizer className={styles.text}>
             {content.content}
           </HtmlSanitizer>
@@ -83,13 +85,20 @@ const RewardSheet = ({ isOpen, content, onClose }) => (
   </SheetDrawer>
 );
 
-rewardSheetStyles.propTypes = {
+RewardSheet.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
-  content: PropTypes.shape(),
+  content: PropTypes.shape({
+    title: PropTypes.string,
+    subTitle: PropTypes.string,
+    image: PropTypes.string,
+    content: PropTypes.string,
+    buttonLink: PropTypes.string,
+    buttonText: PropTypes.string,
+  }),
 };
 
-rewardSheetStyles.defaultProps = {
+RewardSheet.defaultProps = {
   content: null,
 };
 
