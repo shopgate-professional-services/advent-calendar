@@ -1,7 +1,12 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'glamor';
-import { SheetDrawer, HtmlSanitizer, Link } from '@shopgate/engage/components';
+import {
+  SheetDrawer, HtmlSanitizer, Link, SurroundPortals,
+} from '@shopgate/engage/components';
+import { rewardSheet } from '../../config';
+
+const { styles: rewardSheetStyles, headerImage } = rewardSheet;
 
 const styles = {
   sheet: css({
@@ -16,27 +21,27 @@ const styles = {
     ' > *': {
       margin: '0.5rem',
     },
-  }).toString(),
+  }, rewardSheetStyles.content).toString(),
   title: css({
     color: '#111111',
     fontSize: '2rem',
     fontWeight: 600,
-  }),
+  }, rewardSheetStyles.title),
   subTitle: css({
     color: '#111111',
     fontSize: '1.25rem',
-  }),
+  }, rewardSheetStyles.subTitle),
   text: css({
     textAlign: 'center',
     fontSize: '0.875rem',
-  }).toString(),
+  }, rewardSheetStyles.text).toString(),
   link: css({
     display: 'flex',
     justifyContent: 'center',
     color: '#C62121',
     textTransform: 'uppercase',
     fontWeight: 600,
-  }).toString(),
+  }, rewardSheetStyles.link).toString(),
 };
 
 /**
@@ -49,12 +54,15 @@ const RewardSheet = ({ isOpen, content, onClose }) => (
     contentClassName={styles.content}
     onClose={onClose}
   >
-    <div className={styles.content}>
-      {content && (
+    <SurroundPortals portalName="ps.advent-calendar.reward-sheet" portalProps={content}>
+      <div className={styles.content}>
+        {content && (
         <Fragment>
-          <div>
-            <img src="https://shopgate-public.s3.eu-west-1.amazonaws.com/ps/advent/v1/bell.png" alt="" />
-          </div>
+          {headerImage && (
+            <div>
+              <img src={headerImage} alt="" />
+            </div>
+          )}
           <div className={styles.title}>
             {content.title}
           </div>
@@ -63,9 +71,11 @@ const RewardSheet = ({ isOpen, content, onClose }) => (
               {content.subTitle}
             </div>
           )}
-          <div>
-            <img src={content.image} alt="" />
-          </div>
+          {content.image && (
+            <div>
+              <img src={content.image} alt="" />
+            </div>
+          )}
           <HtmlSanitizer className={styles.text}>
             {content.content}
           </HtmlSanitizer>
@@ -73,15 +83,23 @@ const RewardSheet = ({ isOpen, content, onClose }) => (
             {content.buttonText}
           </Link>
         </Fragment>
-      )}
-    </div>
+        )}
+      </div>
+    </SurroundPortals>
   </SheetDrawer>
 );
 
 RewardSheet.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
-  content: PropTypes.shape(),
+  content: PropTypes.shape({
+    title: PropTypes.string,
+    subTitle: PropTypes.string,
+    image: PropTypes.string,
+    content: PropTypes.string,
+    buttonLink: PropTypes.string,
+    buttonText: PropTypes.string,
+  }),
 };
 
 RewardSheet.defaultProps = {
