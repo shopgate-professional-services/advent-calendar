@@ -103,7 +103,7 @@ const RewardSheet = ({ isOpen, content, onClose }) => (
             </HtmlSanitizer>
           </SurroundPortals>
 
-          {content.buttonText && (
+          {content.buttonLink && content.buttonText && (
             <Link href={content.buttonLink} className={styles.link}>
               {content.buttonText}
             </Link>
