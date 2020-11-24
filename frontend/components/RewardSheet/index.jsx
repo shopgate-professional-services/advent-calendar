@@ -1,7 +1,9 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'glamor';
-import { SheetDrawer, HtmlSanitizer, Link } from '@shopgate/engage/components';
+import {
+  SheetDrawer, HtmlSanitizer, Link, SurroundPortals,
+} from '@shopgate/engage/components';
 import { rewardSheet } from '../../config';
 
 const { styles: rewardSheetStyles, headerImage } = rewardSheet;
@@ -52,8 +54,9 @@ const RewardSheet = ({ isOpen, content, onClose }) => (
     contentClassName={styles.content}
     onClose={onClose}
   >
-    <div className={styles.content}>
-      {content && (
+    <SurroundPortals portalName="ps.advent-calendar.reward-sheet" portalProps={content}>
+      <div className={styles.content}>
+        {content && (
         <Fragment>
           {headerImage && (
             <div>
@@ -80,8 +83,9 @@ const RewardSheet = ({ isOpen, content, onClose }) => (
             {content.buttonText}
           </Link>
         </Fragment>
-      )}
-    </div>
+        )}
+      </div>
+    </SurroundPortals>
   </SheetDrawer>
 );
 
