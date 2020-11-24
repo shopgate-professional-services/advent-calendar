@@ -14,27 +14,30 @@ const styles = {
   }).toString(),
   content: css({
     padding: '1.5rem 1rem 1rem',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    ' > *': {
-      margin: '0.5rem',
-    },
   }, rewardSheetStyles.content).toString(),
   title: css({
     color: '#111111',
     fontSize: '2rem',
     fontWeight: 600,
+    marginBottom: '0.5rem',
+    textAlign: 'center',
   }, rewardSheetStyles.title),
   subTitle: css({
     color: '#111111',
     fontSize: '1.25rem',
+    marginBottom: '0.5rem',
+    textAlign: 'center',
   }, rewardSheetStyles.subTitle),
   text: css({
     textAlign: 'center',
     fontSize: '0.875rem',
+    margin: '0.5rem 1rem',
   }, rewardSheetStyles.text).toString(),
+  image: css({
+    display: 'flex',
+    justifyContent: 'center',
+    marginBottom: '0.5rem',
+  }, rewardSheetStyles.image).toString(),
   link: css({
     display: 'flex',
     justifyContent: 'center',
@@ -51,40 +54,62 @@ const RewardSheet = ({ isOpen, content, onClose }) => (
   <SheetDrawer
     isOpen={isOpen}
     className={styles.sheet}
-    contentClassName={styles.content}
     onClose={onClose}
   >
-    <SurroundPortals portalName="ps.advent-calendar.reward-sheet" portalProps={content}>
-      <div className={styles.content}>
-        {content && (
+    <SurroundPortals
+      portalName="ps.advent-calendar.reward-sheet"
+      portalProps={{
+        content,
+        close: onClose,
+      }}
+    >
+      {content && (
         <Fragment>
-          {headerImage && (
-            <div>
-              <img src={headerImage} alt="" />
-            </div>
-          )}
-          <div className={styles.title}>
-            {content.title}
+          <div className={styles.content}>
+            {headerImage && (
+              <div className={styles.image}>
+                <img src={headerImage} alt="" />
+              </div>
+            )}
+
+            {content.title && (
+              <div className={styles.title}>
+                {content.title}
+              </div>
+            )}
+
+            {content.subTitle && (
+              <div className={styles.subTitle}>
+                {content.subTitle}
+              </div>
+            )}
+
+            {content.image && (
+              <div className={styles.image}>
+                <img src={content.image} alt="" />
+              </div>
+            )}
           </div>
-          {content.subTitle && (
-            <div className={styles.subTitle}>
-              {content.subTitle}
-            </div>
+
+          <SurroundPortals
+            portalName="ps.advent-calendar.reward-sheet.content"
+            portalProps={{
+              content,
+              close: onClose,
+            }}
+          >
+            <HtmlSanitizer className={styles.text}>
+              {content.content}
+            </HtmlSanitizer>
+          </SurroundPortals>
+
+          {content.buttonText && (
+            <Link href={content.buttonLink} className={styles.link}>
+              {content.buttonText}
+            </Link>
           )}
-          {content.image && (
-            <div>
-              <img src={content.image} alt="" />
-            </div>
-          )}
-          <HtmlSanitizer className={styles.text}>
-            {content.content}
-          </HtmlSanitizer>
-          <Link href={content.buttonLink} className={styles.link}>
-            {content.buttonText}
-          </Link>
         </Fragment>
-        )}
-      </div>
+      )}
     </SurroundPortals>
   </SheetDrawer>
 );

@@ -41,13 +41,13 @@ This extension uses such pages:
         - `expired` (json): styles for active day grid item
         - `future` (json): styles for future day grid item
         - `active` (json): styles for active day grid item
-
 - `rewardSheet` (json): Styles for reward sheet
     - `headerImage` (string): Image url for header image in sheet
     - `styles` (json): style for reward sheet
          - `title`: (json): styles title
          - `subTitle`: (json): styles stubTitle
          - `content`: (json): styles content wrapper
+         - `image`: (json): styles image wrapper
          - `link`: (json): styles link
          - `text`: (json): styles text
 
