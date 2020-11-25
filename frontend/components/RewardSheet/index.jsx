@@ -36,6 +36,7 @@ const styles = {
   image: css({
     display: 'flex',
     justifyContent: 'center',
+    alignItems: 'center',
     marginBottom: '0.5rem',
   }, rewardSheetStyles.image).toString(),
   link: css({
