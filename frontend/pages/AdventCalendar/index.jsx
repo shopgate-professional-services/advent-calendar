@@ -9,7 +9,7 @@ import { isCalendarAllowed } from '../../helpers';
 import { calendarPage } from '../../config';
 import { CALENDAR_ROUTE } from '../../constants';
 
-const { image, styles: pageStyles } = calendarPage;
+const { image, styles: pageStyles, texts = {} } = calendarPage;
 
 const styles = {
   page: css(pageStyles),
@@ -41,13 +41,16 @@ const AdventCalendar = () => {
           <CloseButton />
 
           <div className={styles.image}>
-            <img src={image} alt="" />
+            <img className="advent-header-img" src={image} alt="" />
           </div>
 
-          {allowCalendar && <Calendar />}
+          {texts.headline && (<h1 className="advent-headline">{texts.headline}</h1>)}
+          {texts.aboveGrid && (<div className="advent-text-above">{texts.aboveGrid}</div>)}
 
+          {allowCalendar && <Calendar />}
           {!allowCalendar && <ComingSoon />}
 
+          {texts.belowGrid && (<div className="advent-text-below">{texts.belowGrid}</div>)}
         </div>
       </div>
     </View>
