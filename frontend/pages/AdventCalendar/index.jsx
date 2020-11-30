@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from 'glamor';
 import { useTheme } from '@shopgate/engage/core';
-import { Route } from '@shopgate/engage/components';
+import { HtmlSanitizer, Route } from '@shopgate/engage/components';
 import CloseButton from '../../components/CloseButton';
 import Calendar from '../../components/Calendar';
 import ComingSoon from '../../components/ComingSoon';
@@ -50,7 +50,11 @@ const AdventCalendar = () => {
           {allowCalendar && <Calendar />}
           {!allowCalendar && <ComingSoon />}
 
-          {texts.belowGrid && (<div className="advent-text-below">{texts.belowGrid}</div>)}
+          {texts.belowGrid && (
+            <HtmlSanitizer className="advent-text-below">
+              {texts.belowGrid}
+            </HtmlSanitizer>
+          )}
         </div>
       </div>
     </View>
