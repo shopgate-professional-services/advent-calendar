@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'glamor';
+import { useNavigation } from '@shopgate/engage/core';
 import {
   SheetDrawer, HtmlSanitizer, Link, SurroundPortals,
 } from '@shopgate/engage/components';
@@ -51,69 +52,80 @@ const styles = {
 /**
  * @return {React.Element}
  */
-const RewardSheet = ({ isOpen, content, onClose }) => (
-  <SheetDrawer
-    isOpen={isOpen}
-    className={styles.sheet}
-    onClose={onClose}
-  >
-    <SurroundPortals
-      portalName="ps.advent-calendar.reward-sheet"
-      portalProps={{
-        content,
-        close: onClose,
-      }}
+const RewardSheet = ({ isOpen, content, onClose }) => {
+  const { push } = useNavigation();
+
+  const handleClick = (pathname, target) => {
+    push({
+      pathname,
+      ...target && { state: { target } },
+    });
+  };
+
+  return (
+    <SheetDrawer
+      isOpen={isOpen}
+      className={styles.sheet}
+      onClose={onClose}
     >
-      {content && (
-        <Fragment>
-          <div className={styles.content}>
-            {headerImage && (
-              <div className={styles.image}>
-                <img src={headerImage} alt="" />
-              </div>
+      <SurroundPortals
+        portalName="ps.advent-calendar.reward-sheet"
+        portalProps={{
+          content,
+          close: onClose,
+        }}
+      >
+        {content && (
+          <Fragment>
+            <div className={styles.content}>
+              {headerImage && (
+                <div className={styles.image}>
+                  <img src={headerImage} alt="" />
+                </div>
+              )}
+
+              {content.title && (
+                <div className={styles.title}>
+                  {content.title}
+                </div>
+              )}
+
+              {content.subTitle && (
+                <div className={styles.subTitle}>
+                  {content.subTitle}
+                </div>
+              )}
+
+              {content.image && (
+                <div className={styles.image}>
+                  <img src={content.image} alt="" />
+                </div>
+              )}
+            </div>
+
+            <SurroundPortals
+              portalName="ps.advent-calendar.reward-sheet.content"
+              portalProps={{
+                content,
+                close: onClose,
+              }}
+            >
+              <HtmlSanitizer className={styles.text} settings={{ handleClick }}>
+                {content.content}
+              </HtmlSanitizer>
+            </SurroundPortals>
+
+            {content.buttonLink && content.buttonText && (
+              <Link href={content.buttonLink} className={styles.link}>
+                {content.buttonText}
+              </Link>
             )}
-
-            {content.title && (
-              <div className={styles.title}>
-                {content.title}
-              </div>
-            )}
-
-            {content.subTitle && (
-              <div className={styles.subTitle}>
-                {content.subTitle}
-              </div>
-            )}
-
-            {content.image && (
-              <div className={styles.image}>
-                <img src={content.image} alt="" />
-              </div>
-            )}
-          </div>
-
-          <SurroundPortals
-            portalName="ps.advent-calendar.reward-sheet.content"
-            portalProps={{
-              content,
-              close: onClose,
-            }}
-          >
-            <HtmlSanitizer className={styles.text}>
-              {content.content}
-            </HtmlSanitizer>
-          </SurroundPortals>
-
-          {content.buttonLink && content.buttonText && (
-            <Link href={content.buttonLink} className={styles.link}>
-              {content.buttonText}
-            </Link>
-          )}
-        </Fragment>
-      )}
-    </SurroundPortals>
-  </SheetDrawer>
-);
+          </Fragment>
+        )}
+      </SurroundPortals>
+    </SheetDrawer>
+  );
+};
 
 RewardSheet.propTypes = {
   isOpen: PropTypes.bool.isRequired,
