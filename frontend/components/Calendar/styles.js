@@ -5,6 +5,8 @@ const { styles: configStyles } = calendarGrid;
 
 export const styles = {
   gridWrapper: css({
+    maxWidth: 320,
+    margin: '0 auto',
     position: 'relative',
   }).toString(),
   grid: css({
